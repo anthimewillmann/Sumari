@@ -46,6 +46,7 @@ class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
                 Detect the language of the following text and respond in exactly that language.
                 Summarize the following webpage in 5 bullet points.
                 Do not translate. Use the same language as the text below.
+                ?
 
                 \(short)
                 """)
