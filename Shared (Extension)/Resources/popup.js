@@ -4,21 +4,21 @@ const input     = document.getElementById("question");
 
 let pageText = "";
 
-// Frageleiste immer direkt über der Tastatur halten
-function updateInputPosition() {
-    const viewport = window.visualViewport;
-    const offsetTop = viewport.offsetTop;
-    const offsetLeft = viewport.offsetLeft;
-    const height = viewport.height;
+const isIOS = /iPhone|iPad/.test(navigator.userAgent);
 
-    inputArea.style.transform = `translateY(${offsetTop}px)`;
-    inputArea.style.top = `${height - inputArea.offsetHeight}px`;
-    inputArea.style.left = `${offsetLeft}px`;
+function updateInputPosition() {
+    if (!isIOS) return;
+    const viewport = window.visualViewport;
+    inputArea.style.transform = `translateY(${viewport.offsetTop}px)`;
+    inputArea.style.top = `${viewport.height - inputArea.offsetHeight}px`;
+    inputArea.style.left = `${viewport.offsetLeft}px`;
     inputArea.style.width = `${viewport.width}px`;
 }
 
-window.visualViewport.addEventListener("resize", updateInputPosition);
-window.visualViewport.addEventListener("scroll", updateInputPosition);
+if (isIOS && window.visualViewport) {
+    window.visualViewport.addEventListener("resize", updateInputPosition);
+    window.visualViewport.addEventListener("scroll", updateInputPosition);
+}
 
 (async () => {
     let pageData;
@@ -47,7 +47,7 @@ window.visualViewport.addEventListener("scroll", updateInputPosition);
     el.textContent = response?.summary ?? response?.error ?? "Keine Antwort.";
 
     inputArea.style.display = "block";
-    updateInputPosition();
+    if (isIOS) updateInputPosition();
     input.focus();
 })();
 
@@ -58,7 +58,7 @@ input.addEventListener("keydown", async (e) => {
 
     input.value = "";
     input.disabled = true;
-    el.textContent = "";
+    el.textContent = "Antwort wird geladen…";
 
     let response;
     try {

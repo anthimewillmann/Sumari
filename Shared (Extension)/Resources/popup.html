@@ -2,22 +2,23 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="popup.css">
     <style>
         #input-area {
             display: none;
             position: fixed;
-            top: 0;
+            bottom: 0;
             left: 0;
-            padding: 10px 0 16px;
-            background: #1c1c1e;
+            right: 0;
+            padding: 10px 16px 16px;
             box-sizing: border-box;
+            background: #f2f2f7;
         }
 
         #input-area input {
-            width: 90%;
+            width: 100%;
             display: block;
-            margin: 0 auto;
             padding: 12px 18px;
             border-radius: 50px;
             border: none;
@@ -54,7 +55,7 @@
 <body>
     <strong id="summary"></strong>
     <div id="input-area">
-        <input id="question" type="text" placeholder="Nachfrage stellen…" />
+        <input id="question" type="text" placeholder="Nachfrage stellen..." />
     </div>
     <script src="popup.js"></script>
 </body>
