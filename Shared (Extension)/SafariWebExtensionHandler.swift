@@ -12,48 +12,51 @@ class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
             let message = request?.userInfo?[SFExtensionMessageKey]
             let dict    = message as? [String: Any]
 
-            logger.debug("beginRequest received: \(String(describing: dict))")
-
             guard let text = dict?["text"] as? String, !text.isEmpty else {
-                logger.warning("No text in message dict: \(String(describing: dict))")
-                complete(context: context, summary: nil,
-                         error: "Kein Text empfangen. Dict: \(String(describing: dict))")
+                complete(context: context, summary: nil, error: "Kein Text empfangen.")
                 return
             }
 
+            let question = dict?["question"] as? String
+
             if #available(iOS 26.0, macOS 26.0, *) {
-                await summarize(text: text, context: context)
+                await summarize(text: text, question: question, context: context)
             } else {
-                complete(context: context, summary: nil,
-                         error: "Foundation Models benötigen iOS/macOS 26.")
+                complete(context: context, summary: nil, error: "Foundation Models benötigen iOS/macOS 26.")
             }
         }
     }
 
     @available(iOS 26.0, macOS 26.0, *)
-    private func summarize(text: String, context: NSExtensionContext) async {
+    private func summarize(text: String, question: String?, context: NSExtensionContext) async {
         do {
             let model = SystemLanguageModel.default
             guard case .available = model.availability else {
                 complete(context: context, summary: nil,
-                         error: "Apple Intelligence nicht verfügbar. Bitte unter Einstellungen > Apple Intelligence aktivieren.")
+                         error: "Apple Intelligence nicht verfügbar.")
                 return
             }
 
             let session = LanguageModelSession()
-            let short   = String(text.prefix(12000))
-            let response = try await session.respond(to: """
-                Detect the language of the following text and respond in exactly that language.
-                Summarize the following webpage in 5 bullet points.
-                Do not translate. Use the same language as the text below.
+            let short   = String(text.prefix(4000))
 
-                \(short)
-                """)
+            let prompt: String
+            if let q = question {
+                prompt = "Answer this question about the webpage in the same language as the question: \(q)\n\n\(short)"
+            } else {
+                prompt = """
+                    Detect the language of the following text and respond in exactly that language.
+                    Summarize the following webpage in 5 bullet points.
+                    Do not translate. Use the same language as the text below.
 
+                    \(short)
+                    """
+            }
+
+            let response = try await session.respond(to: prompt)
             complete(context: context, summary: response.content, error: nil)
 
         } catch {
-            logger.error("FoundationModels error: \(error.localizedDescription)")
             complete(context: context, summary: nil, error: error.localizedDescription)
         }
     }
