@@ -2,60 +2,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
     <link rel="stylesheet" href="popup.css">
-    <style>
-        #input-area {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 10px 16px 16px;
-            box-sizing: border-box;
-            background: #f2f2f7;
-        }
-
-        #input-area input {
-            width: 100%;
-            display: block;
-            padding: 12px 18px;
-            border-radius: 50px;
-            border: none;
-            font-family: system-ui;
-            font-size: 16px;
-            outline: none;
-            box-sizing: border-box;
-            background: #ffffff;
-            color: #000;
-        }
-
-        #input-area input::placeholder {
-            color: rgba(0, 0, 0, 0.35);
-        }
-
-        @media (prefers-color-scheme: dark) {
-            #input-area {
-                background: #1c1c1e;
-            }
-            #input-area input {
-                background: #2c2c2e;
-                color: white;
-            }
-            #input-area input::placeholder {
-                color: rgba(255, 255, 255, 0.3);
-            }
-        }
-
-        body {
-            padding-bottom: 72px;
-        }
-    </style>
 </head>
 <body>
-    <strong id="summary"></strong>
+    <div id="summary"></div>
     <div id="input-area">
-        <input id="question" type="text" placeholder="Nachfrage stellen..." />
+        <input id="question" type="text" />
     </div>
     <script src="popup.js"></script>
 </body>

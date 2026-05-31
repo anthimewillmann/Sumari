@@ -1,77 +1,77 @@
-// popup.js
-// Controls the extension popup UI.
-// Automatically fetches the page text when the popup opens, requests a summary,
-// and allows the user to ask follow-up questions via an input field.
+const el        = document.getElementById("summary");
+const inputArea = document.getElementById("input-area");
+const input     = document.getElementById("question");
 
-const el        = document.getElementById("summary");    // Text output area
-const inputArea = document.getElementById("input-area"); // Input field container
-const input     = document.getElementById("question");   // Text input field
+let pageText  = "";
+let isAsking  = false;
 
-let pageText = ""; // Cached page text, reused for follow-up questions
+const translations = {
+    de: { noText: "Kein Text gefunden.",          errorPre: "Fehler: ",  noAnswer: "Keine Antwort erhalten.",   placeholder: "Nachfrage stellen…"   },
+    en: { noText: "No text found.",               errorPre: "Error: ",   noAnswer: "No response.",              placeholder: "Ask a question…"      },
+    fr: { noText: "Aucun texte trouvé.",          errorPre: "Erreur : ", noAnswer: "Aucune réponse reçue.",     placeholder: "Poser une question…"  },
+    es: { noText: "No se encontró texto.",        errorPre: "Error: ",   noAnswer: "Sin respuesta.",            placeholder: "Hacer una pregunta…"  },
+    it: { noText: "Nessun testo trovato.",        errorPre: "Errore: ",  noAnswer: "Nessuna risposta.",         placeholder: "Fai una domanda…"     },
+    pt: { noText: "Nenhum texto encontrado.",     errorPre: "Erro: ",    noAnswer: "Sem resposta.",             placeholder: "Fazer uma pergunta…"  },
+    nl: { noText: "Geen tekst gevonden.",         errorPre: "Fout: ",    noAnswer: "Geen antwoord ontvangen.",  placeholder: "Stel een vraag…"      },
+    pl: { noText: "Nie znaleziono tekstu.",       errorPre: "Błąd: ",    noAnswer: "Brak odpowiedzi.",          placeholder: "Zadaj pytanie…"       },
+    tr: { noText: "Metin bulunamadı.",            errorPre: "Hata: ",    noAnswer: "Yanıt alınamadı.",          placeholder: "Soru sor…"            },
+    ja: { noText: "テキストが見つかりません。",          errorPre: "エラー：",  noAnswer: "応答がありません。",           placeholder: "質問を入力…"            },
+    zh: { noText: "未找到文本。",                    errorPre: "错误：",    noAnswer: "没有收到回复。",              placeholder: "提问…"                 },
+    ar: { noText: "لم يتم العثور على نص.",       errorPre: "خطأ: ",    noAnswer: "لا توجد استجابة.",          placeholder: "اطرح سؤالاً…"         },
+};
 
-// iOS detection: keyboard repositioning is only needed on iOS
-const isIOS = /iPhone|iPad/.test(navigator.userAgent);
+const lang = navigator.language.slice(0, 2);
+const t = translations[lang] ?? translations.en;
 
-// Keeps the input field directly above the virtual keyboard (iOS only)
-function updateInputPosition() {
-    if (!isIOS) return;
-    const viewport = window.visualViewport;
-    inputArea.style.transform = `translateY(${viewport.offsetTop}px)`;
-    inputArea.style.top = `${viewport.height - inputArea.offsetHeight}px`;
-    inputArea.style.left = `${viewport.offsetLeft}px`;
-    inputArea.style.width = `${viewport.width}px`;
-}
+input.placeholder = t.placeholder;
 
-// Register keyboard events only on iOS
-if (isIOS && window.visualViewport) {
-    window.visualViewport.addEventListener("resize", updateInputPosition);
-    window.visualViewport.addEventListener("scroll", updateInputPosition);
-}
-
-// ── Automatic summary when the popup opens ──
 (async () => {
     let pageData;
     try {
         pageData = await browser.runtime.sendMessage({ type: "getPageText" });
     } catch (e) {
-        el.textContent = "Error: " + e.message;
+        el.textContent = t.errorPre + e.message;
         return;
     }
 
-    // Abort if no usable text was found
     if (!pageData?.text || pageData.text.trim().length < 10) {
-        el.textContent = pageData?.error ?? "No text found.";
+        el.textContent = pageData?.error ?? t.noText;
         return;
     }
 
     pageText = pageData.text;
 
-    // Request summary from the Swift handler via background.js
     let response;
     try {
         response = await browser.runtime.sendMessage({ type: "summarize", text: pageText });
     } catch (e) {
-        el.textContent = "Error: " + e.message;
+        el.textContent = t.errorPre + e.message;
         return;
     }
 
-    el.textContent = response?.summary ?? response?.error ?? "No response.";
+    if (response?.error) {
+        el.textContent = t.errorPre + response.error;
+        return;
+    }
 
-    // Show the input field once the summary is ready
+    el.textContent = response?.summary ?? t.noAnswer;
+    el.scrollIntoView({ behavior: "instant", block: "start" });
+
     inputArea.style.display = "block";
-    if (isIOS) updateInputPosition();
-    input.focus();
 })();
 
-// ── Submit follow-up question on Enter ──
 input.addEventListener("keydown", async (e) => {
     if (e.key !== "Enter") return;
+    e.preventDefault();
+
+    if (isAsking) return;
     const question = input.value.trim();
     if (!question) return;
 
+    isAsking = true;
     input.value = "";
     input.disabled = true;
-    el.textContent = "Loading answer…";
+    el.textContent = "";
 
     let response;
     try {
@@ -81,12 +81,20 @@ input.addEventListener("keydown", async (e) => {
             question
         });
     } catch (err) {
-        el.textContent = "Error: " + err.message;
+        el.textContent = t.errorPre + err.message;
         input.disabled = false;
+        isAsking = false;
         return;
     }
 
-    el.textContent = response?.summary ?? response?.error ?? "No response.";
+    if (response?.error) {
+        el.textContent = t.errorPre + response.error;
+    } else {
+        el.textContent = response?.summary ?? t.noAnswer;
+    }
+
+    el.scrollIntoView({ behavior: "instant", block: "start" });
+
     input.disabled = false;
-    input.focus();
+    isAsking = false;
 });
