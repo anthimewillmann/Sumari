@@ -28,7 +28,7 @@ body {
 #input-area {
     display: none;
     position: fixed;
-    bottom: 0;
+    top: 0;        /* wird per JS gesetzt */
     left: 0;
     right: 0;
     padding: 10px 16px env(safe-area-inset-bottom, 16px);

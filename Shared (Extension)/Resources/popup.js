@@ -25,6 +25,17 @@ const t = translations[lang] ?? translations.en;
 
 input.placeholder = t.placeholder;
 
+function updateInputPosition() {
+    const vv = window.visualViewport;
+    if (!vv) return;
+    inputArea.style.top   = `${vv.offsetTop + vv.height - inputArea.offsetHeight}px`;
+    inputArea.style.left  = `${vv.offsetLeft}px`;
+    inputArea.style.width = `${vv.width}px`;
+}
+
+window.visualViewport?.addEventListener("resize", updateInputPosition);
+window.visualViewport?.addEventListener("scroll", updateInputPosition);
+
 (async () => {
     let pageData;
     try {
@@ -58,6 +69,7 @@ input.placeholder = t.placeholder;
     el.scrollIntoView({ behavior: "instant", block: "start" });
 
     inputArea.style.display = "block";
+    updateInputPosition();
 })();
 
 input.addEventListener("keydown", async (e) => {
