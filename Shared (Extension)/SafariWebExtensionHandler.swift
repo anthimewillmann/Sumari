@@ -60,9 +60,6 @@ class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
             }
 
             complete(context: context, summary: result, errorCode: nil, error: nil)
-        } catch let error as LanguageModelError {
-            logger.error("Language model request failed: \(String(describing: error), privacy: .public)")
-            complete(context: context, summary: nil, errorCode: errorCode(for: error), error: error.localizedDescription)
         } catch {
             logger.error("Unexpected model request failure: \(error.localizedDescription, privacy: .public)")
             complete(context: context, summary: nil, errorCode: "generationFailed", error: error.localizedDescription)
@@ -191,16 +188,6 @@ class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
 
         if !current.isEmpty { chunks.append(current) }
         return chunks.isEmpty ? [String(normalized.prefix(limit))] : chunks
-    }
-
-    @available(iOS 26.0, macOS 26.0, *)
-    private func errorCode(for error: LanguageModelError) -> String {
-        switch error {
-        case .contextSizeExceeded: "contextTooLarge"
-        case .guardrailViolation, .refusal: "contentRestricted"
-        case .unsupportedLanguageOrLocale: "unsupportedLanguage"
-        default: "generationFailed"
-        }
     }
 
     private func complete(

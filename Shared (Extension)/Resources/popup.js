@@ -2,8 +2,18 @@ const el        = document.getElementById("summary");
 const inputArea = document.getElementById("input-area");
 const input     = document.getElementById("question");
 
+if (navigator.platform === "MacIntel" && navigator.maxTouchPoints === 0) {
+    document.documentElement.classList.add("platform-macos");
+}
+
 let pageText  = "";
 let isAsking  = false;
+let conversationContext = "";
+
+function addToConversation(role, text) {
+    conversationContext += `${role}: ${text}\n`;
+    conversationContext = conversationContext.slice(-3000);
+}
 
 const translations = {
     de: { noText: "Kein Text gefunden.",          errorPre: "Fehler: ",  noAnswer: "Keine Antwort erhalten.",   placeholder: "Nachfrage stellen…"   },
@@ -66,6 +76,7 @@ window.visualViewport?.addEventListener("scroll", updateInputPosition);
     }
 
     el.textContent = response?.summary ?? t.noAnswer;
+    if (response?.summary) addToConversation("SUMMARY", response.summary);
     el.scrollIntoView({ behavior: "instant", block: "start" });
 
     inputArea.style.display = "block";
@@ -90,7 +101,8 @@ input.addEventListener("keydown", async (e) => {
         response = await browser.runtime.sendMessage({
             type: "ask",
             text: pageText,
-            question
+            question,
+            conversationContext
         });
     } catch (err) {
         el.textContent = t.errorPre + err.message;
@@ -103,6 +115,10 @@ input.addEventListener("keydown", async (e) => {
         el.textContent = t.errorPre + response.error;
     } else {
         el.textContent = response?.summary ?? t.noAnswer;
+        if (response?.summary) {
+            addToConversation("QUESTION", question);
+            addToConversation("ANSWER", response.summary);
+        }
     }
 
     el.scrollIntoView({ behavior: "instant", block: "start" });

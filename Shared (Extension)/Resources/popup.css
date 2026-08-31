@@ -47,6 +47,10 @@ body {
     box-sizing: border-box;
 }
 
+.platform-macos #input-area {
+    padding-bottom: 12px;
+}
+
 @media (prefers-color-scheme: light) {
     body { color: black; background: #f2f2f7; }
     #input-area { background: #f2f2f7; }

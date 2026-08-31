@@ -23,7 +23,7 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
   // Sends the page text to the Swift handler for AI processing.
   if (request.type === "summarize") {
     browser.runtime.sendNativeMessage(
-      "com.animationtest.Sumari",
+      "com.anthimewillmann.sumari",
       { text: request.text }
     )
     .then(result => sendResponse(result ?? { error: "Empty response from Swift handler." }))
@@ -35,8 +35,12 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
   // Sends page text + user question to the Swift handler.
   if (request.type === "ask") {
     browser.runtime.sendNativeMessage(
-      "com.animationtest.Sumari",
-      { text: request.text, question: request.question }
+      "com.anthimewillmann.sumari",
+      {
+        text: request.text,
+        question: request.question,
+        conversationContext: request.conversationContext
+      }
     )
     .then(result => sendResponse(result ?? { error: "Empty response from Swift handler." }))
     .catch(err => sendResponse({ error: "Native handler error: " + (err?.message ?? String(err)) }));

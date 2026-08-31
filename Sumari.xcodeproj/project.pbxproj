@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D505DBD2FD8589100EFBE97 /* App Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 5D505DBC2FD8589100EFBE97 /* App Icon.icon */; };
+		5D505DBE2FD8589100EFBE97 /* App Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 5D505DBC2FD8589100EFBE97 /* App Icon.icon */; };
+		5D505DBF2FD8589100EFBE97 /* App Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 5D505DBC2FD8589100EFBE97 /* App Icon.icon */; };
+		5D505DC02FD8589100EFBE97 /* App Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 5D505DBC2FD8589100EFBE97 /* App Icon.icon */; };
 		5D667CAE2FC8E0200038D757 /* Sumari Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5D667CAD2FC8E0200038D757 /* Sumari Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5D667CB82FC8E0200038D757 /* Sumari Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5D667CB72FC8E0200038D757 /* Sumari Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -54,6 +58,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5D505DBC2FD8589100EFBE97 /* App Icon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "App Icon.icon"; sourceTree = "<group>"; };
 		5D667C902FC8E0200038D757 /* Sumari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sumari.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D667CA22FC8E0200038D757 /* Sumari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sumari.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D667CAD2FC8E0200038D757 /* Sumari Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Sumari Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -234,6 +239,7 @@
 				5D667CB12FC8E0200038D757 /* iOS (Extension) */,
 				5D667CBB2FC8E0200038D757 /* macOS (Extension) */,
 				5D667C912FC8E0200038D757 /* Products */,
+				5D505DBC2FD8589100EFBE97 /* App Icon.icon */,
 			);
 			sourceTree = "<group>";
 		};
@@ -394,6 +400,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D505DBD2FD8589100EFBE97 /* App Icon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +408,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D505DBF2FD8589100EFBE97 /* App Icon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +416,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D505DC02FD8589100EFBE97 /* App Icon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +424,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D505DBE2FD8589100EFBE97 /* App Icon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,7 +496,7 @@
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.animationtest.Sumari.Extension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anthimewillmann.sumari.extension;
 				PRODUCT_NAME = "Sumari Extension";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -520,7 +530,7 @@
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.animationtest.Sumari.Extension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anthimewillmann.sumari.extension;
 				PRODUCT_NAME = "Sumari Extension";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -537,7 +547,7 @@
 		5D667CE22FC8E0200038D757 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -562,7 +572,7 @@
 					"-framework",
 					WebKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.animationtest.Sumari;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anthimewillmann.sumari;
 				PRODUCT_NAME = Sumari;
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -578,7 +588,7 @@
 		5D667CE32FC8E0200038D757 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -603,7 +613,7 @@
 					"-framework",
 					WebKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.animationtest.Sumari;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anthimewillmann.sumari;
 				PRODUCT_NAME = Sumari;
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -641,7 +651,7 @@
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.animationtest.Sumari.Extension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anthimewillmann.sumari.extension;
 				PRODUCT_NAME = "Sumari Extension";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -677,7 +687,7 @@
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.animationtest.Sumari.Extension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anthimewillmann.sumari.extension;
 				PRODUCT_NAME = "Sumari Extension";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -692,7 +702,7 @@
 		5D667CEC2FC8E0200038D757 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -703,6 +713,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Sumari;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -717,7 +728,7 @@
 					"-framework",
 					WebKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.animationtest.Sumari;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anthimewillmann.sumari;
 				PRODUCT_NAME = Sumari;
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = macosx;
@@ -733,7 +744,7 @@
 		5D667CED2FC8E0200038D757 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -744,6 +755,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Sumari;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -758,7 +770,7 @@
 					"-framework",
 					WebKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.animationtest.Sumari;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anthimewillmann.sumari;
 				PRODUCT_NAME = Sumari;
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = macosx;

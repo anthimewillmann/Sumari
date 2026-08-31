@@ -16,7 +16,7 @@ import SafariServices
 typealias PlatformViewController = NSViewController
 #endif
 
-let extensionBundleIdentifier = "com.animationtest.Sumari.Extension"
+let extensionBundleIdentifier = "com.anthimewillmann.sumari.extension"
 
 class ViewController: PlatformViewController, WKNavigationDelegate, WKScriptMessageHandler {
 
@@ -42,7 +42,7 @@ class ViewController: PlatformViewController, WKNavigationDelegate, WKScriptMess
 #elseif os(macOS)
         webView.evaluateJavaScript("show('mac')")
 
-        SFSafariExtensionManager.getStateOfSafariExtension(withIdentifier: extensionBundleIdentifier) { (state, error) in
+        SFSafariExtensionManager.getStateOfSafariExtension(withIdentifier: extensionBundleIdentifier) { state, error in
             guard let state = state, error == nil else {
                 // Insert code to inform the user that something went wrong.
                 return
@@ -61,7 +61,7 @@ class ViewController: PlatformViewController, WKNavigationDelegate, WKScriptMess
 
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
 #if os(macOS)
-        if (message.body as! String != "open-preferences") {
+        guard let command = message.body as? String, command == "open-preferences" else {
             return
         }
 
