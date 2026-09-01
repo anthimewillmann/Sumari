@@ -5,18 +5,21 @@ Instead of reading long articles, blog posts, or documentation, Sumari extracts 
 ## Screenshots
 
 <p align="center">
+  <img src="Screenshots/Screenshot%20iPhone%2017%20Pro%2001.09.2026%20at%2000.09.00.png" width="40%">
+  <img src="Screenshots/Screenshot%20iPhone%2017%20Pro%2001.09.2026%20at%2000.08.53.png" width="40%">
+</p>
+
+<p align="center">
   <img src="Screenshots/Screenshot%20iPhone%2017%20Pro%2001.09.2026%20at%2000.08.06.png" width="40%">
   <img src="Screenshots/Screenshot%20iPhone%2017%20Pro%2001.09.2026%20at%2000.08.14.png" width="40%">
 </p>
 
 <p align="center">
-  <img src="Screenshots/Screenshot%20iPhone%2017%20Pro%2001.09.2026%20at%2000.08.53.png" width="40%">
-  <img src="Screenshots/Screenshot%20iPhone%2017%20Pro%2001.09.2026%20at%2000.09.00.png" width="40%">
+  <img src="Screenshots/Screenshot%202026-09-01%20at%2000.27.52.png" width="80%">
 </p>
 
 <p align="center">
-  <img src="Screenshots/Screenshot%202026-09-01%20at%2000.27.37.png" width="45%">
-  <img src="Screenshots/Screenshot%202026-09-01%20at%2000.27.52.png" width="45%">
+  <img src="Screenshots/Screenshot%202026-09-01%20at%2000.27.37.png" width="80%">
 </p>
 
 ## Features
