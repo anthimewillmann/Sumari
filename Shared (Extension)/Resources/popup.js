@@ -4,6 +4,9 @@ const input     = document.getElementById("question");
 
 if (navigator.platform === "MacIntel" && navigator.maxTouchPoints === 0) {
     document.documentElement.classList.add("platform-macos");
+} else if (navigator.platform === "iPad" ||
+           (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) {
+    document.documentElement.classList.add("platform-ipados");
 }
 
 let pageText  = "";

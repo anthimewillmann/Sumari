@@ -51,7 +51,15 @@ body {
     padding-bottom: 12px;
 }
 
+/* iPad popovers can report a zero safe-area inset. Keep the same bottom
+   spacing as the Mac while preserving larger insets when present. */
+.platform-ipados #input-area {
+    padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
+}
+
 @media (prefers-color-scheme: light) {
+    /* Safari reads the body's inherited color-scheme for its native popover. */
+    html.platform-macos { color-scheme: light; }
     body { color: black; background: #f2f2f7; }
     #input-area { background: #f2f2f7; }
     #input-area input { background: #ffffff; color: #000000; }
@@ -59,6 +67,7 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
+    html.platform-macos { color-scheme: dark; }
     body { color: white; background: #1c1c1e; }
     #input-area { background: #1c1c1e; }
     #input-area input { background: #2c2c2e; color: #ffffff; }
