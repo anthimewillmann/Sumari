@@ -4,7 +4,7 @@
         "description": "The display name for the extension."
     },
     "extension_description": {
-        "message": "This is Sumari. You should tell us what your extension does here.",
+        "message": "Summarize the current webpage in Safari and ask follow-up questions with an on-device language model.",
         "description": "Description of what the extension does."
     }
 }
