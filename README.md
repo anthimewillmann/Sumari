@@ -34,16 +34,7 @@ Sumari helps you understand articles, blog posts, documentation, and other text-
 </p>
 
 <p align="center">
-  <img src="Screenshots/Screenshot%20iPhone%2017%20Pro%2001.09.2026%20at%2000.08.06.png" width="40%" alt="Sumari in Safari on iPhone, example 3">
-  <img src="Screenshots/Screenshot%20iPhone%2017%20Pro%2001.09.2026%20at%2000.08.14.png" width="40%" alt="Sumari in Safari on iPhone, example 4">
-</p>
-
-<p align="center">
   <img src="Screenshots/Screenshot%202026-09-01%20at%2000.27.52.png" width="80%" alt="Sumari in Safari on Mac, example 1">
-</p>
-
-<p align="center">
-  <img src="Screenshots/Screenshot%202026-09-01%20at%2000.27.37.png" width="80%" alt="Sumari in Safari on Mac, example 2">
 </p>
 
 ## Features
