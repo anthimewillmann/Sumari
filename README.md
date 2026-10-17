@@ -160,10 +160,6 @@ Page text, questions, and recent conversation context are passed locally from th
 
 The popup holds page text and conversation context in memory without persisting them. Safari website access is needed to read the page selected for summarization; no Sumari account is required.
 
-## Author
-
-Created by **[Anthime Willmann](https://github.com/anthimewillmann)**.
-
 ## License
 
 This project is licensed under the MIT License. A standalone `LICENSE` file is not currently included in the repository.
