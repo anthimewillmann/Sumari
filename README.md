@@ -29,12 +29,16 @@ Sumari helps you understand articles, blog posts, documentation, and other text-
 ## Screenshots
 
 <p align="center">
-  <img src="Screenshots/Screenshot%20iPhone%2017%20Pro%2001.09.2026%20at%2000.09.00.png" width="40%" alt="Sumari in Safari on iPhone, example 1">
-  <img src="Screenshots/Screenshot%20iPhone%2017%20Pro%2001.09.2026%20at%2000.08.53.png" width="40%" alt="Sumari in Safari on iPhone, example 2">
+  <img src="Screenshots/sumari-iphone-summary.jpeg" width="40%" alt="Sumari summarizing an article about urban gardens in Safari on iPhone">
+  <img src="Screenshots/sumari-iphone-expanded.jpeg" width="40%" alt="Sumari summary in the expanded Safari extension sheet on iPhone">
 </p>
 
 <p align="center">
-  <img src="Screenshots/Screenshot%202026-09-01%20at%2000.27.52.png" width="80%" alt="Sumari in Safari on Mac, example 1">
+  <img src="Screenshots/sumari-ipad-summary.jpeg" width="80%" alt="Sumari summarizing an article about urban gardens in Safari on iPad">
+</p>
+
+<p align="center">
+  <img src="Screenshots/sumari-mac-summary.png" width="80%" alt="Sumari summarizing an article about urban gardens in Safari on Mac">
 </p>
 
 ## Features
